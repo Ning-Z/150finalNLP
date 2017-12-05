@@ -10,7 +10,7 @@ from collections import Counter
 def gre_voc():
 	# A xls reader to get all GRE vocabularies
 	gre_voc = xlrd.open_workbook("GRE-Vocab.xls").sheet_by_index(1)
-	return list(set(gre_voc.cell(row, 0).value for row in range(gre_voc.nrows)))
+	return [gre_voc.cell(row, 0).value for row in range(gre_voc.nrows)]
 
 # return a sentence of 6 words that ends with a GRE word
 def get_gre_phrases(sent):

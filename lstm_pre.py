@@ -10,8 +10,11 @@ def test_lstm(sent ,prediction):
 		saver.restore(sess, 'model.ckpt')
 		p = tf.argmax(prediction,1)
 		pre = p.eval(feed_dict={x:sent}, session=sess)
+		print(pre)
 	return pre
 
 # sent = ['to', 'contribute', 'any', 'really', 'good', 'enigmas']
 sent = ['.--', 'Fancying', 'you', 'to', 'have', 'fathomed']
+pre = test_lstm(sent, predict)
+print(pre)
 print(gre[test_lstm(sent, predict)[0]])
