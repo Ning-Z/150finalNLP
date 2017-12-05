@@ -12,13 +12,14 @@ For all the words from the text that is in changeable
 set will be changes with GRE word
 We will return the word to be replaced and the original text
 '''
-def replaceable(change):
-	with open('./PeterPan.txt' , "r") as file:
-		head = file.readlines()[:80]
-		text = ''
-		for lines in head:
-			text += lines.replace('\n',' ')		
-		wl = re.findall('\w+', text)
+def replaceable(change,input):
+	# with open('./PeterPan.txt' , "r") as file:
+	# 	head = file.readlines()[:80]
+	head = input
+	text = ''
+	for lines in head:
+		text += lines.replace('\n',' ')		
+	wl = re.findall('\w+', text)
 	return set(w.lower() for w in wl if stem.stem(w.lower()) in change), wl
 
 # Calculate the replacement ratio, to_be_repalced/total_voc
@@ -78,13 +79,17 @@ dictionary = PyDictionary()
 gre = gre_voc()
 gre_dict = gre_synonyms()
 change = changeable()
-replace, text = replaceable(change)
-print(replace)
-print(len(replace))
-print(replace_rotio(replace, text))
-new = substitute(replace, text, gre)
-print(new)
-# def replace():
+# replace, text = replaceable(change)
+# print(replace)
+# print(len(replace))
+# print(replace_rotio(replace, text))
+# new = substitute(replace, text, gre)
+# print(new)
+
+def complify(text):
+	replace, text = replaceable(change,text)
+	new = substitute(replace, text, gre)
+	return new
 
 
 # learning replace need tokenizer as below 
